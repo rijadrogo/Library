@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>eLibrary</title>
+    </h:head>
+
+    <h:body>
+        <h:form> 
+
+            <p style="font-size: 30px; font-family: Verdana; alignment-adjust: central">
+            </p>
+
+            <p:panel id="panel" header="Search" style="margin-bottom:10px;">
+                <p:messages id="messages" />
+                <h:panelGrid columns="4" cellpadding="5">
+
+                    <p:inputText id="txt1" value="#{removeUserBean.firstname}" label="Text 1" onkeypress="if (event.keyCode == 13) {
+
+                                return false;
+                            }" placeholder="Enter firstname">
+                        <f:ajax  execute="@form" render="userTable"/>
+                    </p:inputText>
+
+                    <p:inputText id="txt2" value="#{removeUserBean.lastname}" label="Text 2" onkeypress="if (event.keyCode == 13) {
+
+                                return false;
+                            }" placeholder="Enter lastname" >
+                        <f:ajax  execute="@form" render="userTable"/>
+                    </p:inputText>    
+
+                    <p:inputText id="txt3" value="#{removeUserBean.username}" label="Text 2" onkeypress="if (event.keyCode == 13) {
+
+                                return false;
+                            }" placeholder="Enter username" >
+                        <f:ajax  execute="@form" render="userTable"/>
+                    </p:inputText> 
+
+                </h:panelGrid>
+            </p:panel>
+
+            <p:dataTable id="userTable" value="#{removeUserBean.users}" var="user" paginator="true" rows="10"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">Book pagination</f:facet>
+                <p:column>
+                    <f:facet name="header">
+                        Firstname
+                    </f:facet>
+                    #{user.firstName}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Lastname
+                    </f:facet>
+                    #{user.lastName}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Username
+                    </f:facet>
+                    #{user.username}
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        Priviledge
+                    </f:facet>
+                    #{user.getPrivelegeName()}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Action
+                    </f:facet>
+                    <h:commandButton value="Remove user" actionListener="#{removeUserBean.removeUser(user.username)}">
+                        <f:ajax  execute="@form" render="userTable"/>
+                    </h:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>

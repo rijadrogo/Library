@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Register in eLibrary</title>
+    </h:head>
+    <h:body styleClass="BImage">
+        <h3>Registration</h3>
+        <h:form>
+            <h:panelGrid columns="3">
+                <p:outputLabel value="Username: "/>
+                <p:inputText id="username" value="#{registerManagedBean.username}" required="true" requiredMessage="Korisničko ime je obavezno"/>
+                <h:message for="username" style="color: red"/>
+
+                <p:outputLabel value="Password: "/>
+                <p:password id="password" value="#{registerManagedBean.password}" required="true" requiredMessage="Lozinka je obavezna"/>
+                <p:message for="password" style="color: red"/>
+
+                <p:outputLabel value="First name: "/>
+                <p:inputText id="name" value="#{registerManagedBean.name}" required="true" requiredMessage="Ime je obavezno"/>
+                <p:message for="name" style="color: red"/>
+
+                <p:outputLabel value="Lastname: "/>
+                <p:inputText id="surname" value="#{registerManagedBean.surename}" required="true" requiredMessage="Prezime je obavezno"/>
+                <p:message for="surname" style="color: red"/>
+
+                <p:commandButton value="Register" action="#{registerManagedBean.register()}"/>
+                <p:outputLabel value="#{registerManagedBean.message}" style="color: red"/>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

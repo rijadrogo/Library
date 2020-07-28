@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Register in eLibrary</title>
+    </h:head>
+    <h:body styleClass="BImage">
+        <h3>Add new publisher</h3>
+        <h:form>
+            <h:panelGrid columns="3">
+                <p:outputLabel value="Publisher name:"/>
+                <p:inputText id="publiserName" value="#{publisherManagedBean.publiserName}" required="true" requiredMessage="Korisničko ime je obavezno"/>
+                <h:message for="publiserName" style="color: red"/>
+
+                <p:outputLabel value="Publisher address:"/>
+                <p:inputText id="publisherAddress" value="#{publisherManagedBean.publisherAddress}" required="true" requiredMessage="Lozinka je obavezna"/>
+                <h:message for="publisherAddress" style="color: red"/>
+
+                <p:commandButton value="Add publisher" action="index" actionListener="#{publisherManagedBean.savePublisher()}"/>
+                
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
